@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		27681F362B9A8E6D0042EACF /* FoodPinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27681F352B9A8E6D0042EACF /* FoodPinApp.swift */; };
-		27681F382B9A8E6D0042EACF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27681F372B9A8E6D0042EACF /* ContentView.swift */; };
+		27681F382B9A8E6D0042EACF /* RestaurantListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27681F372B9A8E6D0042EACF /* RestaurantListView.swift */; };
 		27681F3A2B9A8E6E0042EACF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27681F392B9A8E6E0042EACF /* Assets.xcassets */; };
 		27681F3D2B9A8E6E0042EACF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27681F3C2B9A8E6E0042EACF /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		27681F322B9A8E6D0042EACF /* FoodPin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodPin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27681F352B9A8E6D0042EACF /* FoodPinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPinApp.swift; sourceTree = "<group>"; };
-		27681F372B9A8E6D0042EACF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		27681F372B9A8E6D0042EACF /* RestaurantListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListView.swift; sourceTree = "<group>"; };
 		27681F392B9A8E6E0042EACF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27681F3C2B9A8E6E0042EACF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,7 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				27681F352B9A8E6D0042EACF /* FoodPinApp.swift */,
-				27681F372B9A8E6D0042EACF /* ContentView.swift */,
+				27681F372B9A8E6D0042EACF /* RestaurantListView.swift */,
 				27681F392B9A8E6E0042EACF /* Assets.xcassets */,
 				27681F3B2B9A8E6E0042EACF /* Preview Content */,
 			);
@@ -137,7 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27681F382B9A8E6D0042EACF /* ContentView.swift in Sources */,
+				27681F382B9A8E6D0042EACF /* RestaurantListView.swift in Sources */,
 				27681F362B9A8E6D0042EACF /* FoodPinApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
