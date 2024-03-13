@@ -35,10 +35,46 @@ struct RestaurantListView: View {
     
     
     var body: some View {
-        List(restaurants.indices, id: \.self){ index in
-            BasicTextImageRow(restaurant: $restaurants[index])
+        NavigationStack {
+            List{
+                ForEach(restaurants.indices, id: \.self){ index in
+                    ZStack(alignment: .leading){
+                        NavigationLink(destination: RestaurantDetailView(restaurant: restaurants[index])){
+                            EmptyView()
+                        }
+                        .opacity(0)
+                        
+                        BasicTextImageRow(restaurant: $restaurants[index])
+                            .swipeActions(edge: .leading, allowsFullSwipe: false, content:{
+                                Button{
+                                    
+                                } label: {
+                                    Image(systemName: "heart")
+                                }
+                                .tint(.green)
+                                
+                                Button{
+                                    
+                                } label: {
+                                    Image(systemName: "square.and.arrow.up")
+                                }
+                                .tint(.orange)
+                            })
+                    }
+                    
+                    
+                }
+                .onDelete(perform: { indexSet in
+                    restaurants.remove(atOffsets: indexSet)
+                })
+                .listRowSeparator(.hidden)
+            }
+            .listStyle(.plain)
+            
+            .navigationTitle("FoodPin")
+            .navigationBarTitleDisplayMode(.automatic)
         }
-        .listStyle(.plain)
+        .tint(.white)
     }
 }
 
@@ -47,7 +83,7 @@ struct RestaurantListView: View {
 }
 
 struct BasicTextImageRow: View {
-
+    
     // MARK: - Binding
     
     @Binding var restaurant: Restaurant
@@ -56,7 +92,6 @@ struct BasicTextImageRow: View {
     
     @State private var showOptions = false
     @State private var showError = false
-//    @Binding var isFavorite: Bool
     
     var body: some View {
         HStack(alignment: .top, spacing: 20){
@@ -83,22 +118,56 @@ struct BasicTextImageRow: View {
                     .foregroundColor(.yellow)
             }
         }
-        .listRowSeparator(.hidden)
-        .onTapGesture {
-            self.showOptions.toggle()
-        }
-        .confirmationDialog("What do you want to do?", isPresented: $showOptions, titleVisibility: .visible){
-            Button("Reserve a table"){
+//        .onTapGesture {
+//            self.showOptions.toggle()
+//        }
+//        .confirmationDialog("What do you want to do?", isPresented: $showOptions, titleVisibility: .visible){
+//            Button("Reserve a table"){
+//                self.showError.toggle()
+//            }
+//            Button(self.restaurant.isFavorite ? "Remove from favorites" : "Mark as favorite"){
+//                self.restaurant.isFavorite.toggle()
+//            }
+//        }
+        .contextMenu{
+            Button(action: {
                 self.showError.toggle()
+            }){
+                HStack{
+                    Text("Reserve a table")
+                    Image(systemName: "phone")
+                }
             }
-            Button(self.restaurant.isFavorite ? "Remove from favorites" : "Mark as favorite"){
+            Button(action: {
                 self.restaurant.isFavorite.toggle()
+            }){
+                HStack{
+                    Text(self.restaurant.isFavorite ? "Remove from favorites" : "Mark as favorite")
+                    Image(systemName: "heart")
+                }
+            }
+            Button(action: {
+                self.showOptions.toggle()
+            }){
+                HStack{
+                    Text("Share")
+                    Image(systemName: "square.and.arrow.up")
+                }
             }
         }
         .alert("Not yet available", isPresented: $showError){
             Button("OK"){}
         } message: {
             Text("Sorry, this feature is not available yet. Please retry later.")
+        }
+        .sheet(isPresented: $showOptions){
+            let defaultText  = "Just checking at \(restaurant.name)"
+            
+            if let imageToShare = UIImage(named: restaurant.image){
+                ActivityView(activityItems: [defaultText, imageToShare])
+            } else {
+                ActivityView(activityItems: [defaultText])
+            }
         }
     }
 }
